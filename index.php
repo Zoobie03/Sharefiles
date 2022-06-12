@@ -21,8 +21,13 @@
           mkdir('uploads');
         }
 
+        $newImageName = time().rand().rand().'.'.$extensionImage;
+        
         // Move image to uploads folder with a unique filename
-        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.time().rand().rand().'.'.$extensionImage);
+        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.$newImageName);
+        
+        $uploadState = true;
+        
       }
     }
 
@@ -47,7 +52,14 @@
 
     <section>
       <h1>
-        <i class="fas fa-paper-plane"></i>
+        <?php 
+          if (isset($uploadState) && $uploadState) {
+            echo '<img src="./uploads/'.$newImageName.'" alt="ShareFiles" styles="max-width= 75%" >';
+          } else {
+            echo '<i class="fas fa-paper-plane"></i>';
+          }
+        ?>
+
       </h1>
 
       <form method="post" action="index.php" enctype="multipart/form-data">
