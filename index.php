@@ -45,7 +45,7 @@
   </head>
   <body>
     <header>
-      <a href="../">
+      <a href="./">
         <span>ShareFiles</span>
       </a>
     </header>
@@ -63,13 +63,29 @@
       </h1>
 
       <form method="post" action="index.php" enctype="multipart/form-data">
-        <p>
-          <label for="image">Sélectionnez votre fichier</label><br>
-          <input type="file" name="image" id="image">
-        </p>
-        <p id="send">
-          <button type="submit">Envoyer <i class="fas fa-long-arrow-alt-right"></i></button>
-        </p>
+        <?php
+        
+          if (isset($uploadState) && $uploadState) {
+            
+            echo 
+              '<p>
+                <label for="image-link">Voici votre lien</label><br>
+                <input type="text" value="http://localhost/sharefiles/uploads/'.$newImageName.'" name="image-link" id="image-link">
+              </p>
+              <p>
+                Pour recommencer, cliquer sur ShareFiles.
+              </p>';
+          } else {
+            echo 
+              '<p>
+                <label for="image">Sélectionnez votre fichier</label><br>
+                <input type="file" name="image" id="image">
+              </p>
+              <p id="send">
+                <button type="submit">Envoyer <i class="fas fa-long-arrow-alt-right"></i></button>
+              </p>';
+          }
+        ?>
       </form>
     </section>
   </body>
