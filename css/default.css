@@ -40,7 +40,13 @@ label {
   display: block;
 }
 
-input[type='file'] {
+#image-link {
+  background-color: white;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+input[type='text'] {
   background-color: white;
   width: 100%;
   padding: 0.5rem;
