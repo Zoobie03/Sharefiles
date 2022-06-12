@@ -1,4 +1,29 @@
-<!DOCTYPE html>
+<?php
+  // $_FILES contains an image and its error code is 0
+  if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+    // The image is less than 3 mo
+    if ($_FILES['image']['size'] <= 3000000) {
+      // Additional information about our image
+      $informationsImage = pathinfo($_FILES['image']['name']);
+
+      // Recovering our image extension
+      $extensionImage = $informationsImage['extension'];
+
+      // Array of extensions accepted by our server
+      $extensionsArray = ['png', 'gif', 'jpg', 'jpeg'];
+
+      // Image has a valid extension
+      if (in_array($extensionImage, $extensionsArray)) {
+
+        // Move image to uploads folder with a unique filename
+        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.time().rand().rand().'.'.$extensionImage);
+      }
+    }
+
+  } else {
+  }
+
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
