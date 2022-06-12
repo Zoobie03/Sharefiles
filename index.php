@@ -15,6 +15,12 @@
       // Image has a valid extension
       if (in_array($extensionImage, $extensionsArray)) {
 
+        // Check if uploads directory exist
+        if (!is_dir('uploads')) {
+          // if not, create him
+          mkdir('uploads');
+        }
+
         // Move image to uploads folder with a unique filename
         move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.time().rand().rand().'.'.$extensionImage);
       }
